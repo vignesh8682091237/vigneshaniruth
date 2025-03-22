@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #f7f7f7; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { background-color: white; padding: 30px 40px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: center; }
+        h2 { color: red; font-size: 24px; margin-bottom: 20px; }
+        form { display: flex; flex-direction: column; }
+        input { padding: 12px 15px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        input[type="submit"] { background-color: #ff4500; color: white; border: none; cursor: pointer; transition: background-color 0.3s; }
+        input[type="submit"]:hover { background-color: #ff6347; }
+        a { color: #1e90ff; text-decoration: none; margin-top: 10px; display: block; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to Register</h2>
+        <form action="/register" method="post">
+            <input type="text" name="username" placeholder="Name" required><br><br>
+            <input type="email" name="email" placeholder="Email" required><br><br>
+            <input type="password" name="password" placeholder="Password" required><br><br>
+            <input type="text" name="mobile" placeholder="Mobile Number" required><br><br>
+            <input type="submit" value="Register">
+        </form>
+        <br><br>
+        <a href="/">Back to Login</a>
+    </div>
+</body>
+</html>

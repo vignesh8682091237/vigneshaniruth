@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD STUDENT DETAILS</title>
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #d4e5f9, #a9b4d0); /* Light gradient background */
+            color: #333;
+        }
+    
+        .form-container {
+            background: #ffffff; /* White background for form */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 30px;
+            transition: all 0.3s ease;
+        }
+    
+        .form-container:hover {
+            transform: translateY(-10px);
+        }
+    
+        .form-content {
+            flex: 2;
+            padding-right: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            color: #1d3557; /* Deep blue */
+            font-weight: 700;
+        }
+    
+        input, select, button {
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            font-size: 1rem;
+            outline: none;
+            background-color: #f1f1f1;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+    
+        input:focus, select:focus {
+            border-color: #00aaff; /* Bright blue focus */
+            box-shadow: 0 0 8px rgba(0, 170, 255, 0.5);
+        }
+    
+        button {
+            background-color: #00aaff; /* Bright blue button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 15px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #007acc; /* Darker blue on hover */
+        }
+    
+        .back-button {
+            background-color: #e74c3c; /* Red color for back button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+    
+        .back-button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+    
+        .image-upload {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .image-upload input {
+            display: none;
+        }
+    
+        .image-upload label {
+            background-color: #4e9bd1;
+            padding: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+    
+        .image-upload label:hover {
+            background-color: #3b7c99; /* Darker hover effect */
+        }
+    
+        .image-frame {
+            width: 180px;
+            height: 180px;
+            border: 3px dashed #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    
+        .image-preview {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+    
+        /* School Details Section */
+        .school-details {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f4f4f4;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    
+        .school-detail {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 18px;
+            align-items: center;
+        }
+    
+        .school-detail input {
+            width: 32%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #fafafa;
+        }
+    
+        .school-detail button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+    
+        .school-detail button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+    
+        /* Name Fields */
+        .name-fields {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+    
+        .name-fields input {
+            width: 32%;
+            padding: 14px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+        }
+    
+        /* Responsiveness */
+        @media screen and (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+                padding: 30px;
+            }
+    
+            .form-content {
+                width: 100%;
+                padding-right: 0;
+            }
+    
+            .image-upload {
+                width: 100%;
+                margin-top: 25px;
+            }
+    
+            .image-frame {
+                width: 150px;
+                height: 150px;
+            }
+    
+            .name-fields {
+                flex-direction: column;
+            }
+    
+            .name-fields input {
+                width: 100%;
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+    
+    
+    
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-content">
+            <h2>ADD STUDENT DETAILS</h2>
+            <!---<form action="add_student.html" method="POST">-->
+                <form action="{{ url_for('add_student') }}" method="POST" enctype="multipart/form-data">                <div class="name-fields">
+                    <input type="text" name="first_name" placeholder="First Name" required>
+                    <input type="text" name="middle_name" placeholder="Middle Name">
+                    <input type="text" name="last_name" placeholder="Last Name" required>
+                </div>
+                <input type="text" name="reg_no" placeholder="Reg. No" required>
+                <input type="text" name="roll_no" placeholder="Roll No" required>
+                <input type="text" name="emis_no" placeholder="EMIS No" required>
+                <input type="text" name="mobile_no" placeholder="Mobile No" required,oninput="validateMobileNumber()",
+                maxlength="10",minlength="10",pattern="[0-9]{10}",title="Please enter a valid 10-digit mobile number.",>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" name="dob" id="dob" required>
+
+                <label for="bloodgroup">Blood Group:</label>
+                <select name="bloodgroup" id="bloodgroup" required>
+                    <option value="" disabled selected>Select Blood Group</option>
+                    <option value="o+">O+</option>
+                    <option value="o-">O-</option>
+                    <option value="ab+">AB+</option>
+                    <option value="a+">A+</option>
+                    <option value="b+">B+</option>
+                    <option value="b-">B-</option>
+                    <option value="ab-">AB-</option>
+                </select>
+
+                <label for="religion">Religion:</label>
+                <select name="religion" id="religion" required>
+                    <option value="" disabled selected>Select Religion</option>
+                    <option value="hindu">Hindu</option>
+                    <option value="muslim">Muslim</option>
+                    <option value="christian">Christian</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="caste">Caste:</label>
+                <select name="caste" id="caste" required>
+                    <option value="" disabled selected>Select Caste</option>
+                    <option value="bc">BC</option>
+                    <option value="obc">OBC</option>
+                    <option value="dc">DC</option>
+                    <option value="sc">SC</option>
+                    <option value="st">ST</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <input type="text" name="address" placeholder="Address" required>
+                <input type="text" name="father_name" placeholder="Father Name" required>
+                <input type="text" name="mother_name" placeholder="Mother Name" required>
+                <input type="text" name="parent_mobile_no" placeholder="Parent Mobile No" required,oninput="validateMobileNumber()",
+                maxlength="10",minlength="10",pattern="[0-9]{10}",title="Please enter a valid 10-digit mobile number.",>
+
+                <!-- Department Selection -->
+                <label for="department">Department:</label>
+                <select name="department" id="department" required>
+                    <option value="" disabled selected>Select Department</option>
+                    <option value="tamil">Tamil</option>
+                    <option value="english">English</option>
+                    <option value="maths">Maths</option>
+                    <option value="phy">Physics</option>
+                    <option value="bio_tech">Bio-Tech</option>
+                    <option value="it">IT</option>
+                    <option value="cs">CS</option>
+                    <option value="b_com">B.Com</option>
+                    <option value="history">History</option>
+                </select>
+
+                <!-- Year Selection -->
+                <label for="year">Year:</label>
+                <select name="year" id="year" required>
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                </select>
+
+                <!-- Day Scholar or Hosteler -->
+                <label for="day_hostel">Day Scholar or Hosteler:</label>
+                <select name="day_hostel" id="day_hostel" required>
+                    <option value="" disabled selected>Select Option</option>
+                    <option value="day_scholar">Day Scholar</option>
+                    <option value="hosteler">Hosteler</option>
+                </select>
+
+                <!-- Gender -->
+                <label for="gender">Gender:</label>
+                <select name="gender" id="gender" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <!-- Current Joining -->
+                <label for="current_joining">PART V</label>
+                <select name="current_joining" id="current_joining" required>
+                    <option value="" disabled selected>Select Option</option>
+                    <option value="PART_V"></option>
+                    <option value="NSS">NSS</option>
+                    <option value="NCC">NCC</option>
+                    <option value="JRC">JRC</option>
+                    <option value="SCOURT">JRC</option>
+                    <option value="RRC">RRC</option>
+                    <option value="YRC">YRC</option>
+
+                </select>
+
+                <!-- Batch Start and End Year -->
+                <label for="batch_start_year">Batch Start Year:</label>
+                <input type="number" name="batch_start_year" id="batch_start_year" placeholder="Start Year" required,min="2000",max="2025">
+
+                <label for="batch_end_year">Batch End Year:</label>
+                <input type="number" name="batch_end_year" id="batch_end_year" placeholder="End Year" required,min="2000",max="2040">
+
+                <!-- Scholarship -->
+                <label for="scholarship">Any Scholarship:</label>
+                <select name="scholarship" id="scholarship" required>
+                    <option value="" disabled selected>Select Option</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <div class="school-details">
+                    <h3>School Details:</h3>
+                    <div id="schoolDetailsContainer"></div>
+                    <button type="button" onclick="addSchoolDetail()">+</button>
+                </div>
+
+                <button type="submit">Register</button>
+                <button class="back-button" onclick="window.history.back();">Back</button>
+
+            </form>
+        </div>
+        <div class="image-upload">
+            <input type="file" id="upload" name="profile_image" accept="image/*" onchange="previewImage(event)",required>
+            <label for="upload">Upload Image</label>
+            <div class="image-frame">
+                <img id="imagePreview" class="image-preview" alt="Image Preview",style="border-radius: 8px;">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = reader.result;
+                imagePreview.style.display = 'block'; // Display the image inside the frame
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function addSchoolDetail() {
+            const container = document.getElementById('schoolDetailsContainer');
+            const schoolDetailDiv = document.createElement('div');
+            schoolDetailDiv.classList.add('school-detail');
+            
+            schoolDetailDiv.innerHTML = `
+                <input type="text" name="school_name" placeholder="School Name">
+                <input type="text" name="std" placeholder="Standard">
+                <input type="text" name="marks" placeholder="Marks">
+                <button type="button" onclick="removeSchoolDetail(this)">Cancel</button>
+            `;
+            container.appendChild(schoolDetailDiv);
+        }
+
+        function removeSchoolDetail(button) {
+            const schoolDetailDiv = button.parentElement;
+            schoolDetailDiv.remove();
+        }
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = reader.result;
+                imagePreview.style.display = 'block'; // Display the image inside the frame
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function validateMobileNumber() {
+            const mobileNumber = document.getElementById('mobile_no').value;
+
+            if (mobileNumber.length !== 10) {
+                alert("Please enter a valid 10-digit mobile number.");
+                return false; // Prevent form submission
+            }
+            if (isNaN(mobileNumber)) {
+                alert("Mobile number should only contain digits.");
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission if valid
+        }
+    </script>
+</body>
+</html>
+

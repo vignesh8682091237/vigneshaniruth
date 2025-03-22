@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #2980b9;
+            padding-left: 10px;
+            transition: 0.3s;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .back-button {
+            background-color: #2980b9;
+            color: white;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #1d6fa5;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        .form-container input, .form-container select, .form-container button {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #f7f7f7;
+        }
+
+        .form-container button {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Student Profile</h2>
+        <ul>
+            <li onclick="showSection('profile')">Student Profile</li>
+            <li onclick="showSection('semester')">Semester Exam Details</li>
+            <li onclick="showSection('attendance')">Attendance Details</li>
+            <li onclick="showSection('fee')">Fee Details</li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+        <!-- Back Button -->
+        <a href="javascript:history.back()" class="back-button">Back</a>
+
+        <!-- Student Profile Section -->
+        <div id="profile">
+            <h2>Student Profile</h2>
+            
+            <!-- Student Profile Info (Editable and Display) -->
+            <div id="profileInfo">
+                <p><b>Name:</b> <span id="studentName">{{ student.first_name }} {{ student.last_name }}</span></p>
+                <p><b>Reg No:</b> <span id="studentRegNo">{{ student.reg_no }}</span></p>
+                <p><b>Roll No:</b> <span id="studentRollNo">{{ student.roll_no }}</span></p>
+                <p><b>DOB:</b> <span id="studentDOB">{{ student.dob }}</span></p>
+                <p><b>Email:</b> <span id="studentEmail">{{ student.email }}</span></p>
+                <p><b>Phone:</b> <span id="studentPhone">{{ student.phone }}</span></p>
+                <p><b>EMIS:</b> <span id="studentEmis">{{ student.emis }}</span></p>
+                <p><b>Blood Group:</b> <span id="studentBloodGroup">{{ student.blood_group }}</span></p>
+                <p><b>Address:</b> <span id="studentAddress">{{ student.address }}</span></p>
+                <p><b>Department:</b> <span id="studentDepartment">{{ student.department }}</span> | <b>Year:</b> <span id="studentYear">{{ student.year }}</span></p>
+                <p><b>College:</b> <span id="studentCollege">{{ student.college_name }}</span></p>
+            </div>
+
+            <!-- Edit and Save buttons -->
+            <div id="editButtons">
+                <button id="editBtn" onclick="editProfile()">Edit</button>
+                <button id="saveBtn" onclick="saveProfile()" style="display:none;">Save</button>
+                <button id="deleteBtn" onclick="deleteProfile()">Delete</button>
+            </div>
+
+            <!-- Edit Profile Form -->
+            <div id="editProfileForm" style="display:none;">
+                <h3>Edit Profile</h3>
+                <form id="editProfile">
+                    <input type="text" id="editName" value="{{ student.first_name }} {{ student.last_name }}" placeholder="Name">
+                    <input type="text" id="editRegNo" value="{{ student.reg_no }}" placeholder="Reg No">
+                    <input type="text" id="editRollNo" value="{{ student.roll_no }}" placeholder="Roll No">
+                    <input type="date" id="editDOB" value="{{ student.dob }}" placeholder="DOB">
+                    <input type="email" id="editEmail" value="{{ student.email }}" placeholder="Email">
+                    <input type="tel" id="editPhone" value="{{ student.phone }}" placeholder="Phone">
+                    <input type="text" id="editEmis" value="{{ student.emis }}" placeholder="EMIS">
+                    <input type="text" id="editBloodGroup" value="{{ student.blood_group }}" placeholder="Blood Group">
+                    <input type="text" id="editAddress" value="{{ student.address }}" placeholder="Address">
+                    <input type="text" id="editDepartment" value="{{ student.department }}" placeholder="Department">
+                    <input type="text" id="editYear" value="{{ student.year }}" placeholder="Year">
+                    <input type="text" id="editCollege" value="{{ student.college_name }}" placeholder="College Name">
+                </form>
+            </div>
+        </div>
+
+        <!-- Additional Sections -->
+        <div id="semester" style="display:none;">
+            <h3 class="section-title">Semester Exam Details</h3>
+            <!-- Semester content here -->
+        </div>
+        <div id="attendance" style="display:none;">
+            <h3 class="section-title">Attendance Details</h3>
+            <!-- Attendance content here -->
+        </div>
+        <div id="fee" style="display:none;">
+            <h3 class="section-title">Fee Details</h3>
+            <!-- Fee content here -->
+        </div>
+    </div>
+
+    <script>
+        // Show and hide sections
+        function showSection(section) {
+            document.getElementById('profile').style.display = 'none';
+            document.getElementById('semester').style.display = 'none';
+            document.getElementById('attendance').style.display = 'none';
+            document.getElementById('fee').style.display = 'none';
+            document.getElementById(section).style.display = 'block';
+        }
+
+        // Function to switch to edit mode
+        function editProfile() {
+            document.getElementById('profileInfo').style.display = 'none';
+            document.getElementById('editButtons').style.display = 'none';
+            document.getElementById('editProfileForm').style.display = 'block';
+            document.getElementById('saveBtn').style.display = 'inline-block';
+        }
+
+        // Function to save edited profile
+        function saveProfile() {
+            const name = document.getElementById('editName').value;
+            const regNo = document.getElementById('editRegNo').value;
+            const rollNo = document.getElementById('editRollNo').value;
+            const dob = document.getElementById('editDOB').value;
+            const email = document.getElementById('editEmail').value;
+            const phone = document.getElementById('editPhone').value;
+            const emis = document.getElementById('editEmis').value;
+            const bloodGroup = document.getElementById('editBloodGroup').value;
+            const address = document.getElementById('editAddress').value;
+            const department = document.getElementById('editDepartment').value;
+            const year = document.getElementById('editYear').value;
+            const college = document.getElementById('editCollege').value;
+
+            // Update the displayed profile details
+            document.getElementById('studentName').textContent = name;
+            document.getElementById('studentRegNo').textContent = regNo;
+            document.getElementById('studentRollNo').textContent = rollNo;
+            document.getElementById('studentDOB').textContent = dob;
+            document.getElementById('studentEmail').textContent = email;
+            document.getElementById('studentPhone').textContent = phone;
+            document.getElementById('studentEmis').textContent = emis;
+            document.getElementById('studentBloodGroup').textContent = bloodGroup;
+            document.getElementById('studentAddress').textContent = address;
+            document.getElementById('studentDepartment').textContent = department;
+            document.getElementById('studentYear').textContent = year;
+            document.getElementById('studentCollege').textContent = college;
+
+            // Hide the edit form and show the updated profile
+            document.getElementById('profileInfo').style.display = 'block';
+            document.getElementById('editButtons').style.display = 'block';
+            document.getElementById('editProfileForm').style.display = 'none';
+        }
+
+        // Function to delete the profile
+        function deleteProfile() {
+            if (confirm("Are you sure you want to delete this profile?")) {
+                // Here you can make an AJAX request to delete the student profile from the database
+                alert("Profile deleted!");
+                // Redirect or update the UI as needed
+            }
+        }
+
+        // Initialize by showing the profile section
+        showSection('profile');
+    </script>
+
+</body>
+</html>

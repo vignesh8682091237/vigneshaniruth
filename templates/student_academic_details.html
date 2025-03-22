@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Academic Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            margin: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], button {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Academic Details</h2>
+        <input type="text" id="reg_no" placeholder="Enter Registration Number">
+        <button onclick="fetchStudentDetails()">Search</button>
+        <div id="studentDetails"></div>
+    </div>
+
+    <script>
+        function fetchStudentDetails() {
+            var regNo = document.getElementById("reg_no").value;
+            if (regNo === "") {
+                alert("Please enter a registration number");
+                return;
+            }
+            
+            fetch(`/get_student_details?reg_no=${regNo}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById("studentDetails").innerHTML = `<p style="color:red;">${data.error}</p>`;
+                    } else {
+                        let details = `<table>
+                            <tr><th>Name</th><td>${data.name}</td></tr>
+                            <tr><th>Reg No</th><td>${data.reg_no}</td></tr>
+                            <tr><th>Department</th><td>${data.department}</td></tr>
+                            <tr><th>Year</th><td>${data.year}</td></tr>
+                            <tr><th>CGPA</th><td>${data.cgpa}</td></tr>
+                            <tr><th>Backlogs</th><td>${data.backlogs}</td></tr>
+                        </table>`;
+                        document.getElementById("studentDetails").innerHTML = details;
+                    }
+                })
+                .catch(error => console.error("Error fetching student details:", error));
+        }
+    </script>
+</body>
+</html>

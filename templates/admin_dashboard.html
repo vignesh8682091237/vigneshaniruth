@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+
+        .dashboard-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .dashboard-container:hover {
+            transform: scale(1.03);
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .greeting {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffdd57;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #ff4500, #ff6347);
+            border: none;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            margin: 8px 0;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ff5733, #ff7750);
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 69, 0, 0.6);
+        }
+
+        a {
+            display: block;
+            margin-top: 15px;
+            color: #ffdd57;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Dashboard -->
+    <div class="dashboard-container">
+        <h2>Admin Dashboard</h2>
+        <p class="greeting" id="greeting"></p>
+        <p>You have full control of the system.</p>
+
+        <!-- Admin Actions -->
+        <button onclick="window.location.href='/admin/check_department_details'">Department Details</button>
+        <button onclick="window.location.href='/admin/add_student'">Add New Student</button>
+        <button onclick="window.location.href='/admin/student_academic_details'">Add Student Academic Details</button>
+        
+        <!-- Logout -->
+        <button onclick="window.location.href='/logout'">Logout</button>
+    </div>
+
+    <script>
+        function getGreeting() {
+            const hour = new Date().getHours();
+            let greetingText = "";
+
+            if (hour < 12) {
+                greetingText = "Good Morning, Admin!";
+            } else if (hour < 18) {
+                greetingText = "Good Afternoon, Admin!";
+            } else {
+                greetingText = "Good Evening, Admin!";
+            }
+
+            document.getElementById("greeting").innerText = greetingText;
+        }
+
+        window.onload = getGreeting;
+    </script>
+</body>
+</html>

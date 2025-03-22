@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Students</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    
+    <style>
+        /* Gradient Background */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Total Students Badge */
+        .total-students {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            padding: 12px;
+            background: #f39c12;
+            color: white;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 60%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            outline: none;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input[type="text"]::placeholder {
+            color: #ddd;
+        }
+
+        input[type="text"]:focus {
+            border-color: #f39c12;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 18px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #e67e22;
+        }
+
+        /* Table Styling */
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+            color: #333;
+        }
+
+        th {
+            background-color: #f39c12;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+            transition: 0.3s;
+        }
+
+        /* Action Button */
+        .view-btn {
+            padding: 8px 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .view-btn:hover {
+            background: #2980b9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            input[type="text"] {
+                width: 90%;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            th, td {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="section-title">Department: {{ department }}</div>
+        <div class="section-title">Year: {{ year }}</div>
+        <p class="total-students">Total Students: {{ students|length }}</p>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by Reg No..." onkeyup="searchTable()">
+            <button onclick="searchTable()">Search</button>
+        </div>
+
+        <div class="table-container">
+            {% if students %}
+            <table id="studentTable">
+                <tr>
+                    <th>Name</th>
+                    <th>Reg No</th>
+                    <th>roll_no</th>
+                    <th>EMIS No</th>
+                    <th>Mobile</th>
+                    <th>DOB</th>
+                    <th>Blood Group</th>
+                    <th>Religion</th>
+                    <th>Caste</th>
+                    <th>Address</th>
+                    <th>Gender</th>
+                    <th>Father Name</th>
+                    <th>Mother Name</th>
+                    <th>Parent Mobile</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    
+                </tr>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</td>
+                    <td>{{ student.reg_no }}</td>
+                    <td>{{student.roll_no}}</td>
+                    <td>{{ student.emis_no }}</td>
+                    <td>{{ student.mobile_no }}</td>
+                    <td>{{ student.dob }}</td>
+                    <td>{{ student.bloodgroup }}</td>
+                    <td>{{ student.religion }}</td>
+                    <td>{{ student.caste }}</td>
+                    <td>{{ student.address }}</td>
+                    <td>{{ student.gender }}</td>
+                    <td>{{ student.father_name }}</td>
+                    <td>{{ student.mother_name }}</td>
+                    <td>{{ student.parent_mobile_no }}</td>
+                    <td>{{ student.department }}</td>
+                    <td>{{ student.year }}</td>
+                    <td><button class="view-btn" onclick="viewDetails('{{ student.reg_no }}')">View</button></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p style="text-align:center; font-size:16px; color:#ffeb3b;">No students found.</p>
+            {% endif %}
+        </div>
+
+        <!-- Buttons in Horizontal Row -->
+        <div class="button-container">
+            <button onclick="goBack()">← Back</button>
+            <button onclick="generatePDF()">Download Student List (PDF)</button>
+        </div>
+    </div>
+
+    <script>
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(18);
+            doc.text("Student List", 105, 15, { align: "center" });
+
+            doc.autoTable({
+                startY: 25,
+                head: [['Name', 'Reg No','roll_no','Mobile', 'Gender', 'Department', 'Year']],
+                body: [...document.querySelectorAll("#studentTable tr")].slice(1).map(row =>
+                    [...row.children].map(cell => cell.innerText)
+                ),
+                theme: 'striped',
+                headStyles: { fillColor: [243, 156, 18] },
+                margin: { top: 30 }
+            });
+
+            doc.save("Student_List.pdf");
+        }
+
+        function searchTable() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            document.querySelectorAll("#studentTable tr:not(:first-child)").forEach(row => {
+                row.style.display = row.cells[1].innerText.toLowerCase().includes(input) ? "" : "none";
+            });
+        }
+        
+              function viewDetails(regNo) {
+                window.location.href = `/student_details?reg_no=${regNo}`;
+         }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
