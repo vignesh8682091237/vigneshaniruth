@@ -1,1 +1,1 @@
-# vigneshaniruth
+# Dynamic qr code
