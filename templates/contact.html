@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vignesh | Contact</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #000000, #0f172a);
+            color: white;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 60px;
+            background-color: rgba(17, 24, 39, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.5);
+        }
+        label {
+            color: white;
+        }
+        .btn-blue {
+            background: linear-gradient(90deg, #0ea5e9, #0284c7);
+            color: white;
+            border-radius: 30px;
+            border: none;
+        }
+        .btn-blue:hover {
+            background: #0284c7;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.7);
+        }
+        h2 {
+            color: #0ea5e9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex justify-content-center">
+        <div class="container">
+            <h2 class="text-center mb-4">Contact Me</h2>
+            <form id="contact-form">
+                <div class="mb-3">
+                    <label>Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                </div>
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="mb-3">
+                    <label>Mobile</label>
+                    <input type="text" id="mobile" class="form-control" placeholder="Enter your mobile number">
+                </div>
+                <div class="mb-3">
+                    <label>Message</label>
+                    <textarea id="message" class="form-control" rows="3" placeholder="Type your message"></textarea>
+                </div>
+                <button type="button" class="btn btn-blue w-100" onclick="submitContactForm()">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase Config -->
+    <script type="module">
+        // Import Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+        // Your Firebase Config
+        const firebaseConfig = {
+           apiKey: "AIzaSyCoL7AS8Og8uS59cVT_sxYOiY7hHn44wXE",
+  authDomain: "vigneshaniruth-ba64b.firebaseapp.com",
+  projectId: "vigneshaniruth-ba64b",
+  storageBucket: "vigneshaniruth-ba64b.firebasestorage.app",
+  messagingSenderId: "173942599225",
+  appId: "1:173942599225:web:5ad050a8592957bec527e8",
+  measurementId: "G-ZE8DYRXNGF"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Submit Function
+        window.submitContactForm = async function() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !mobile || !message) {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "contacts"), {
+                    name: name,
+                    email: email,
+                    mobile: mobile,
+                    message: message,
+                    timestamp: serverTimestamp()
+                });
+
+                alert("Message Sent Successfully!");
+
+                // WhatsApp Message
+                const whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMobile: ${mobile}%0AMessage: ${message}`;
+                window.open(`https://wa.me/91YOURNUMBER?text=${whatsappMessage}`, '_blank');
+
+                // Clear Form
+                document.getElementById('contact-form').reset();
+            } catch (e) {
+                console.error("Error adding document: ", e);
+                alert("Error sending message.");
+            }
+        }
+    </script>
+</body>
+</html>
