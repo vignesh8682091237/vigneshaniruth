@@ -61,6 +61,7 @@
             color: white;
             transform: translateY(-2px) scale(1.05);
         }
+        
 
         /* Skills */
         .skill-box {
@@ -147,6 +148,130 @@
         .navbar-bottom small {
             font-size: 10px;
         }
+
+        /* For certificates section, hide scrollbar but allow smooth scroll */
+#certificates .d-flex {
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge */
+  -webkit-overflow-scrolling: touch;
+}
+
+#certificates .d-flex::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+#certificates .card {
+  flex-shrink: 0;
+  width: 100%;
+  scroll-snap-align: start;
+  background: rgba(17, 24, 39, 0.95);
+  border: 2px solid #0ea5e9;
+  margin: 0 5px;
+}
+
+@media (min-width: 768px) {
+  #certificates .card {
+    width: 500px; /* Show partial cards on desktop */
+  }
+}
+
+
+        /* Reduce space for smaller screens */
+@media (max-width: 576px) {
+  section {
+    padding: 40px 0;
+  }
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  .navbar-bottom {
+    padding: 6px 18px;
+    width: 95%;
+    bottom: 10px;
+  }
+
+  .navbar-bottom .nav-link {
+    font-size: 12px;
+  }
+
+  .navbar-bottom i {
+    font-size: 18px;
+  }
+
+  .navbar-bottom small {
+    font-size: 9px;
+  }
+}
+.company-name {
+  color: white !important;
+  font-weight: 500;
+}
+/* Animate cards - fade and slide-up */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#experience .card-custom {
+  animation: fadeSlideUp 0.8s ease-out both;
+  animation-delay: 0.2s;
+}
+
+#experience .badge {
+  animation: fadeSlideUp 0.8s ease-out both;
+  animation-delay: 0.4s;
+}
+
+/* Optional: Slight glow effect on hover */
+#experience .card-custom:hover {
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.7);
+  transform: translateY(-5px);
+  transition: 0.4s ease;
+}
+
+/* Animate education cards */
+.book-border {
+  position: relative;
+  border: 2px solid #0ea5e9;
+  overflow: hidden;
+}
+
+.border-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: moveAround 4s linear infinite;
+  color: #0ea5e9;
+}
+
+@keyframes moveAround {
+  0% {
+    top: 0; left: 0; transform: rotate(0deg);
+  }
+  25% {
+    top: 0; left: 100%; transform: rotate(90deg);
+  }
+  50% {
+    top: 100%; left: 100%; transform: rotate(180deg);
+  }
+  75% {
+    top: 100%; left: 0; transform: rotate(270deg);
+  }
+  100% {
+    top: 0; left: 0; transform: rotate(360deg);
+  }
+}
+
+
     </style>
 </head>
 
@@ -158,8 +283,9 @@
         <div class="col-md-6">
             <h1>I'm <span style="color:#0ea5e9;">Vignesh Aniruth</span></h1>
             <p class="mt-3 lead">
-                MSc Computer Science graduate. I have worked on Web, App, and IoT development with AI tools. I always deliver quality work on time with continuous learning.
-            </p>
+               "I am a Postgraduate in Computer Science and currently working as a freelancer. 
+               I have experience handling various projects. 
+               I’m passionate about learning and growing in the tech field.
             <div class="d-flex gap-3">
                 <a href="#contact" class="btn btn-blue">Hire Me</a>
                 <a href="static/resume/vignesh_resume.pdf" class="btn btn-outline" download><i class="fa-solid fa-download"></i> Download CV</a>
@@ -173,38 +299,158 @@
 
 <!-- ✅ Experience -->
 <section id="experience" class="container">
-    <h2>Experience</h2>
-    <div class="card-custom">Freelance Developer (2023 - Present) – Web & IoT Projects</div>
-    <div class="card-custom">IoT Developer Intern – Grandiose Academy (8 months)</div>
-    <div class="card-custom">Tutor – GSV Academy (2022 - Present)</div>
-    <div class="card-custom">Data Entry Operator – Hotel Kathiravan (2022 - Present)</div>
+  <h2><i class="fa-solid fa-briefcase me-2"></i>Experience</h2>
+
+  <!-- Freelance Developer -->
+  <div class="card-custom d-flex justify-content-between align-items-start flex-wrap "style="animation-delay: 0.2s;">
+    <div>
+        
+      <h5 class="mb-1 text-info">Freelance Developer</h5>
+      <p class="mb-1 small company-name">Freelancer</p>
+      <p class="mb-0 small">
+        I work on web and IoT projects as a freelancer, delivering solutions for various clients and businesses.
+      </p>
+    </div>
+    <span class="badge bg-primary rounded-pill align-self-start">2023 - Present</span>
+  </div>
+
+  <!-- IoT Developer -->
+  <div class="card-custom d-flex justify-content-between align-items-start flex-wrap"style="animation-delay: 0.2s;">
+    <div>
+      <h5 class="mb-1 text-info">IoT Developer</h5>
+      <p class="mb-1 small company-name">Grandiose Academy Pvt Ltd</p>
+      <p class="mb-0 small">
+        Completed a short IoT project during my 8-month internship, gaining hands-on experience in IoT technologies.
+      </p>
+    </div>
+    <span class="badge bg-primary rounded-pill align-self-start">8 Months</span>
+  </div>
+
+  <!-- Tutor -->
+  <div class="card-custom d-flex justify-content-between align-items-start flex-wrap"style="animation-delay: 0.2s;">
+    <div>
+      <h5 class="mb-1 text-info">Tutor</h5>
+      <p class="mb-1 small company-name">GSV Academy</p>
+      <p class="mb-0 small">
+        Teaching Tamil, Math, Social Studies, and Computer Science to students for the past five years as a part-time job.
+      </p>
+    </div>
+    <span class="badge bg-primary rounded-pill align-self-start">5 Years</span>
+  </div>
+
+  <!-- Data Entry Operator -->
+  <div class="card-custom d-flex justify-content-between align-items-start flex-wrap"style="animation-delay: 0.2s;">
+    <div>
+      <h5 class="mb-1 text-info">Data Entry Operator</h5>
+      <p class="mb-1 small company-name">Hotel Kathiravan</p>
+      <p class="mb-0 small">
+        Handling daily data entry tasks as a part-time employee at Hotel Kathiravan for the past four years.
+      </p>
+    </div>
+    <span class="badge bg-primary rounded-pill align-self-start">4 Years</span>
+  </div>
 </section>
+
+
 
 <!-- ✅ Education -->
 <section id="education" class="container">
-    <h2>Education</h2>
-    <div class="card-custom">MSc Computer Science – 2023-2025<br>Arulmigu Kalasalingam College</div>
-    <div class="card-custom">BSc Information Technology – 2020-2023<br>Arulmigu Kalasalingam College</div>
+  <h2><i class="fa-solid fa-graduation-cap me-2"></i>Education</h2>
+
+  <!-- MSc -->
+  <div class="card-custom book-border d-flex justify-content-between align-items-start flex-wrap">
+    <div>
+      <h5 class="mb-1 text-info">MSc Computer Science</h5>
+      <p class="mb-1 small text-white">Arulmigu Kalasalingam College of Arts and Science</p>
+      <p class="mb-0 small text-white">Krishnankoil, Virudhunagar</p>
+    </div>
+    <span class="badge bg-primary rounded-pill align-self-start">2023 - 2025</span>
+    <div class="border-icon"><i class="fa-solid fa-book"></i></div>
+  </div>
+
+  <!-- BSc -->
+  <div class="card-custom book-border d-flex justify-content-between align-items-start flex-wrap">
+    <div>
+      <h5 class="mb-1 text-info">BSc Information Technology</h5>
+      <p class="mb-1 small text-white">Arulmigu Kalasalingam College of Arts and Science</p>
+      <p class="mb-0 small text-white">Krishnankoil, Virudhunagar</p>
+    </div>
+    <span class="badge bg-primary rounded-pill align-self-start">2020 - 2023</span>
+    <div class="border-icon"><i class="fa-solid fa-book"></i></div>
+  </div>
 </section>
+
+
+  <!-- BSc -->
+  <div class="card-custom d-flex justify-content-between align-items-start flex-wrap"style="animation-delay: 0.2s;">
+    <div>
+      <h5 class="mb-1 text-info">BSc Information Technology</h5>
+      <p class="mb-1 small text-white">Arulmigu Kalasalingam College of Arts and Science</p>
+      <p class="mb-0 small text-white">Krishnankoil, Virudhunagar</p>
+    </div>
+    <span class="badge bg-primary rounded-pill align-self-start">2020 - 2023</span>
+  </div>
+</section>
+
 
 <!-- ✅ Skills -->
 <section id="skills" class="container">
-    <h2>Skills</h2>
-    <div class="d-flex flex-wrap gap-3">
-        <div class="skill-box"><i class="fa-brands fa-html5 text-warning"></i><br>HTML</div>
-        <div class="skill-box"><i class="fa-brands fa-css3-alt text-primary"></i><br>CSS</div>
-        <div class="skill-box"><i class="fa-brands fa-js text-warning"></i><br>JavaScript</div>
-        <div class="skill-box"><i class="fa-brands fa-python text-info"></i><br>Python</div>
-        <div class="skill-box"><i class="fa-brands fa-node text-success"></i><br>Node.js</div>
-        <div class="skill-box"><i class="fa-solid fa-database"></i><br>Firebase</div>
-        <div class="skill-box"><i class="fa-brands fa-android text-success"></i><br>Android</div>
-        <div class="skill-box"><i class="fa-solid fa-microchip"></i><br>IoT</div>
+    <h2><i class="fa-solid fa-laptop-code me-2"></i>Skills</h2>
+    <div class="row g-4">
+        <div class="col-6 col-md-3">
+            <div class="skill-box">
+                <i class="fa-brands fa-html5 text-warning"></i>
+                <h6 class="mt-2">HTML</h6>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="skill-box">
+                <i class="fa-brands fa-css3-alt text-primary"></i>
+                <h6 class="mt-2">CSS</h6>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="skill-box">
+                <i class="fa-brands fa-js text-warning"></i>
+                <h6 class="mt-2">JavaScript</h6>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="skill-box">
+                <i class="fa-brands fa-python text-info"></i>
+                <h6 class="mt-2">Python</h6>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="skill-box">
+                <i class="fa-brands fa-node text-success"></i>
+                <h6 class="mt-2">Node.js</h6>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="skill-box">
+                <i class="fa-solid fa-database"></i>
+                <h6 class="mt-2">Firebase</h6>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="skill-box">
+                <i class="fa-brands fa-android text-success"></i>
+                <h6 class="mt-2">Android</h6>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="skill-box">
+                <i class="fa-solid fa-microchip"></i>
+                <h6 class="mt-2">IoT</h6>
+            </div>
+        </div>
     </div>
 </section>
 
 <!-- ✅ Projects -->
 <section id="projects" class="container">
-    <h2>Projects</h2>
+    <h2><i class="fa-solid fa-diagram-project me-2"></i>Projects</h2>
     <div class="row g-4">
         <div class="col-md-6">
             <div class="project-card">
@@ -247,29 +493,68 @@
 
 <!-- ✅ Certificates -->
 <section id="certificates" class="container">
-    <h2>Certificates</h2>
-    <div class="card-custom">
-        <ul>
-            <li>IoT Project Development - Grandiose Academy</li>
-            <li>Python Full Stack - Online Certification</li>
-            <li>Firebase Integration Workshop</li>
-            <li>AI Tools & Cloud Automation - Webinar</li>
-            <li>Web Development Bootcamp</li>
-        </ul>
+  <h2 class="mb-4"><i class="fa-solid fa-certificate me-2"></i>Certificates</h2>
+  <div class="overflow-hidden" style="position: relative;">
+    <div class="d-flex" style="scroll-snap-type: x mandatory; overflow-x: scroll; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch;">
+      <div class="card flex-shrink-0 mx-1" style="width: 100%; scroll-snap-align: start; background: rgba(17,24,39,0.95); border: 2px solid #0ea5e9;">
+        <img src="static/images/cert1.png" class="card-img-top" alt="Certificate 1">
+        <div class="card-body text-center">
+          <h6 class="card-title text-info mb-2">IoT Project Development</h6>
+          <p class="card-text small mb-0">Grandiose Academy - IoT Project Development Training</p>
+        </div>
+      </div>
+      <div class="card flex-shrink-0 mx-1" style="width: 100%; scroll-snap-align: start; background: rgba(17,24,39,0.95); border: 2px solid #0ea5e9;">
+        <img src="static/images/cert2.png" class="card-img-top" alt="Certificate 2">
+        <div class="card-body text-center">
+          <h6 class="card-title text-info mb-2">Python Full Stack</h6>
+          <p class="card-text small mb-0">Online Full Stack Certification</p>
+        </div>
+      </div>
+      <div class="card flex-shrink-0 mx-1" style="width: 100%; scroll-snap-align: start; background: rgba(17,24,39,0.95); border: 2px solid #0ea5e9;">
+        <img src="static/images/cert3.png" class="card-img-top" alt="Certificate 3">
+        <div class="card-body text-center">
+          <h6 class="card-title text-info mb-2">Firebase Workshop</h6>
+          <p class="card-text small mb-0">Firebase Backend Integration Workshop</p>
+        </div>
+      </div>
+      <div class="card flex-shrink-0 mx-1" style="width: 100%; scroll-snap-align: start; background: rgba(17,24,39,0.95); border: 2px solid #0ea5e9;">
+        <img src="static/images/cert4.png" class="card-img-top" alt="Certificate 4">
+        <div class="card-body text-center">
+          <h6 class="card-title text-info mb-2">AI Tools & Cloud</h6>
+          <p class="card-text small mb-0">AI & Cloud Automation Webinar</p>
+        </div>
+      </div>
+      <div class="card flex-shrink-0 mx-1" style="width: 100%; scroll-snap-align: start; background: rgba(17,24,39,0.95); border: 2px solid #0ea5e9;">
+        <img src="static/images/cert5.png" class="card-img-top" alt="Certificate 5">
+        <div class="card-body text-center">
+          <h6 class="card-title text-info mb-2">Web Development Bootcamp</h6>
+          <p class="card-text small mb-0">Full Stack Development Course</p>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
+
+<!-- ✅ Hide Scrollbar -->
+<style>
+  #certificates .d-flex::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+
 
 <!-- ✅ Contact -->
 <section id="contact" class="container">
-    <h2>Contact</h2>
+    <h2><i class="fa-solid fa-address-book me-2"></i>Contact</h2>
     <div class="card-custom text-center">
         <h3 style="color:#0ea5e9;">Vignesh Aniruth</h3>
         <div class="d-flex justify-content-center gap-4 mt-4">
-            <a href="#" target="_blank" class="icon-btn github"><i class="fa-brands fa-github"></i></a>
-            <a href="#" target="_blank" class="icon-btn linkedin"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="#" target="_blank" class="icon-btn instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/919876543210" target="_blank" class="icon-btn whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="mailto:vignesh@example.com" class="icon-btn email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/vignesh8682091237" target="_blank" class="icon-btn github"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/vignesh-aniruth-4330b11a9/?trk=opento_sprofile_details" target="_blank" class="icon-btn linkedin"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/vignesh_aniruth/" target="_blank" class="icon-btn instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/918682091237" target="_blank" class="icon-btn whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:vigneshaniruth8682@gmail.com" class="icon-btn email"><i class="fa-solid fa-envelope"></i></a>
         </div>
     </div>
 </section>
