@@ -2,266 +2,298 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vigneshaniruth Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vignesh | Portfolio</title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap & Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         body {
             background: linear-gradient(135deg, #000000, #0f172a);
             color: white;
             font-family: 'Segoe UI', sans-serif;
-        }
-
-        /* Navbar */
-        .bg-dark-blue {
-            background-color: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(10px);
-        }
-        .text-blue {
-            color: #0ea5e9;
-        }
-
-        /* Card */
-        .card-custom {
-            background: rgba(17, 24, 39, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid rgba(14, 165, 233, 0.4);
-            transition: all 0.4s ease;
-        }
-        .card-custom:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 0 25px rgba(14, 165, 233, 0.7);
-        }
-
-        /* Buttons */
-        .btn-blue {
-            background: linear-gradient(90deg, #0ea5e9, #0284c7);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            transition: 0.3s;
-        }
-        .btn-blue:hover {
-            background: #0284c7;
-            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.6);
-            transform: translateY(-3px);
-        }
-        .btn-outline-blue {
-            border: 2px solid #0ea5e9;
-            color: #0ea5e9;
-            border-radius: 30px;
-            transition: 0.3s;
-        }
-        .btn-outline-blue:hover {
-            background-color: #0ea5e9;
-            color: white;
-            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.6);
-            transform: translateY(-3px);
-        }
-
-        /* Floating Animation */
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-        @keyframes floating {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Fade Animation */
-        .animate-fade-up {
-            opacity: 0;
-            animation: fadeUp 1s ease forwards;
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            margin-bottom: 100px;
         }
 
         h2 {
             color: #0ea5e9;
-            text-shadow: 0 0 10px rgba(14, 165, 233, 0.8);
+            margin-bottom: 20px;
         }
 
         section {
-            padding-top: 70px;
-            padding-bottom: 70px;
+            padding: 60px 0;
         }
 
-        .justify {
-            text-align: justify;
+        .card-custom {
+            background: rgba(17, 24, 39, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-blue {
+            background: linear-gradient(90deg, #0ea5e9, #0284c7);
+            color: white;
+            border-radius: 30px;
+            border: none;
+            padding: 6px 16px;
+            transition: 0.3s;
+        }
+
+        .btn-blue:hover {
+            background: #0284c7;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .btn-outline {
+            border: 1px solid #0ea5e9;
+            color: #0ea5e9;
+            border-radius: 30px;
+            padding: 6px 16px;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover {
+            background-color: #0ea5e9;
+            color: white;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Skills */
+        .skill-box {
+            background: rgba(17,24,39,0.9);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid #0ea5e9;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
+            transition: 0.4s;
+            min-width: 140px;
+        }
+        .skill-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.8);
+        }
+        .skill-box i {
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        /* Projects */
+        .project-card {
+            background: rgba(17, 24, 39, 0.95);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
+        }
+        .project-card img {
+            border-radius: 12px;
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        /* Contact Icons */
+        .icon-btn {
+            font-size: 22px;
+            color: #ddd;
+            padding: 10px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
+        }
+        .icon-btn:hover {
+            transform: scale(1.2);
+        }
+        .github:hover { background: #333; color: white; }
+        .linkedin:hover { background: #0077b5; color: white; }
+        .instagram:hover { background: radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%); color: white; }
+        .whatsapp:hover { background: #25D366; color: white; }
+        .email:hover { background: #D44638; color: white; }
+
+        /* Bottom Navbar */
+        .navbar-bottom {
+            background-color: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50px;
+            padding: 8px 25px;
+            width: 90%;
+            max-width: 500px;
+            z-index: 999;
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.4);
+        }
+        .navbar-bottom .nav-link {
+            color: white;
+            text-align: center;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        .navbar-bottom .nav-link:hover {
+            color: #0ea5e9;
+            transform: scale(1.2);
+        }
+        .navbar-bottom i {
+            display: block;
+            font-size: 20px;
+        }
+        .navbar-bottom small {
+            font-size: 10px;
         }
     </style>
 </head>
 
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue sticky-top px-4">
-    <div class="container-fluid">
-        <a class="navbar-brand fw-bold fs-3 text-blue" href="#">MyPortfolio</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
-                <li class="nav-item"><a class="nav-link" href="#social">Cantact</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Home -->
-<section id="home" class="container animate-fade-up">
+<!-- ✅ Home -->
+<section id="home" class="container">
     <div class="row align-items-center">
         <div class="col-md-6">
-            <h1 class="display-4 fw-bold">I'm <span class="text-blue">Vignesh Aniruth</span></h1>
-            <p class="lead justify">“I am a recently completed MSc Computer Science graduate, 
-                starting my career as a developer. I have worked on various projects in Web Development,
-                 App Development, and IoT, utilizing AI tools and technologies to enhance my work. 
-                 Through freelance projects, I have developed practical solutions and improved my skills. 
-                 I am a dedicated and hardworking individual who is committed to delivering quality
-                  work on time while continuously learning and upgrading my knowledge.”</p>
+            <h1>I'm <span style="color:#0ea5e9;">Vignesh Aniruth</span></h1>
+            <p class="mt-3 lead">
+                MSc Computer Science graduate. I have worked on Web, App, and IoT development with AI tools. I always deliver quality work on time with continuous learning.
+            </p>
             <div class="d-flex gap-3">
-                <a href="#social" class="btn btn-blue">Hire Me</a>
-                <a href="#projects" class="btn btn-outline-blue">My Work</a>
+                <a href="#contact" class="btn btn-blue">Hire Me</a>
+                <a href="static/resume/vignesh_resume.pdf" class="btn btn-outline" download><i class="fa-solid fa-download"></i> Download CV</a>
             </div>
         </div>
         <div class="col-md-6 text-center">
-            <img src="{{ url_for('static', filename='images/vignesh.png') }}" alt="profile"
-                 class="img-fluid rounded shadow floating">
-            <br><br>
-            <a href="{{ url_for('static', filename='resume/vigensh_anirut12345h.pdf') }}"
-               class="btn btn-outline-blue" download>⬇️ Download CV</a>
+            <img src="static/images/vignesh.png" class="img-fluid rounded shadow" width="280">
         </div>
     </div>
 </section>
 
-<!-- Experience -->
-<section id="experience" class="container animate-fade-up">
-    <h2 class="text-center mb-4">Experience</h2>
-    <div class="card-custom">
-        <h4>Freelance Developer (2023 - Present)</h4>
-        <p class="justify">Worked on college final year projects and freelance projects in web, app, and IoT development using AI tools.</p>
-    </div>
-    <div class="card-custom">
-        <h4>Data Entry Operator – Hotel Kathiravan (2022 - Present)</h4>
-        <p class="justify">Data entry and records management at Hotel Kathiravan.</p>
-    </div>
-    <div class="card-custom">
-        <h4>IoT Developer Intern – Grandioues Academy (2024 – 8 months)</h4>
-        <p class="justify">Worked on IoT-based projects, sensor circuits, and automation systems.</p>
-    </div>
-     <div class="card-custom">
-        <h4>Tutor – GSV Academy (2022 – present)</h4>
-        <p class="justify">Classes for all subjects (up to 10th) + Computer courses (Python, Excel)..</p>
+<!-- ✅ Experience -->
+<section id="experience" class="container">
+    <h2>Experience</h2>
+    <div class="card-custom">Freelance Developer (2023 - Present) – Web & IoT Projects</div>
+    <div class="card-custom">IoT Developer Intern – Grandiose Academy (8 months)</div>
+    <div class="card-custom">Tutor – GSV Academy (2022 - Present)</div>
+    <div class="card-custom">Data Entry Operator – Hotel Kathiravan (2022 - Present)</div>
+</section>
+
+<!-- ✅ Education -->
+<section id="education" class="container">
+    <h2>Education</h2>
+    <div class="card-custom">MSc Computer Science – 2023-2025<br>Arulmigu Kalasalingam College</div>
+    <div class="card-custom">BSc Information Technology – 2020-2023<br>Arulmigu Kalasalingam College</div>
+</section>
+
+<!-- ✅ Skills -->
+<section id="skills" class="container">
+    <h2>Skills</h2>
+    <div class="d-flex flex-wrap gap-3">
+        <div class="skill-box"><i class="fa-brands fa-html5 text-warning"></i><br>HTML</div>
+        <div class="skill-box"><i class="fa-brands fa-css3-alt text-primary"></i><br>CSS</div>
+        <div class="skill-box"><i class="fa-brands fa-js text-warning"></i><br>JavaScript</div>
+        <div class="skill-box"><i class="fa-brands fa-python text-info"></i><br>Python</div>
+        <div class="skill-box"><i class="fa-brands fa-node text-success"></i><br>Node.js</div>
+        <div class="skill-box"><i class="fa-solid fa-database"></i><br>Firebase</div>
+        <div class="skill-box"><i class="fa-brands fa-android text-success"></i><br>Android</div>
+        <div class="skill-box"><i class="fa-solid fa-microchip"></i><br>IoT</div>
     </div>
 </section>
 
-<!-- Education -->
-<section id="education" class="container animate-fade-up">
-    <h2 class="text-center mb-4">Education</h2>
-    <div class="card-custom">
-        <h4>MSc Computer Science</h4>
-        <p>2023 - 2025 | Arulmigu Kalasalingam College of Arts and Science, Tamil Nadu</p>
-    </div>
-    <div class="card-custom">
-        <h4>BSc Information Technology</h4>
-        <p>2020 - 2023 | Arulmigu Kalasalingam College of Arts and Science, Tamil Nadu</p>
+<!-- ✅ Projects -->
+<section id="projects" class="container">
+    <h2>Projects</h2>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="project-card">
+                <img src="static/images/project1.png" alt="">
+                <h5 class="mt-3">RFID Door Lock IoT</h5>
+                <p>RFID-based door lock system with WhatsApp alerts and data logging.</p>
+                <a href="#" class="btn btn-outline btn-sm">GitHub</a>
+                <a href="#" class="btn btn-blue btn-sm">Live View</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="project-card">
+                <img src="static/images/project2.png" alt="">
+                <h5 class="mt-3">Student Management System</h5>
+                <p>Flask + SQL-based student academic & attendance management app.</p>
+                <a href="#" class="btn btn-outline btn-sm">GitHub</a>
+                <a href="#" class="btn btn-blue btn-sm">Live View</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="project-card">
+                <img src="static/images/project3.png" alt="">
+                <h5 class="mt-3">AI Food Calorie Detection</h5>
+                <p>AI model to predict calories from food images using TensorFlow.</p>
+                <a href="#" class="btn btn-outline btn-sm">GitHub</a>
+                <a href="#" class="btn btn-blue btn-sm">Live View</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="project-card">
+                <img src="static/images/project4.png" alt="">
+                <h5 class="mt-3">Plant Monitoring IoT</h5>
+                <p>ESP32-based system to monitor soil moisture and automate watering.</p>
+                <a href="#" class="btn btn-outline btn-sm">GitHub</a>
+                <a href="#" class="btn btn-blue btn-sm">Live View</a>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Skills -->
-<section id="skills" class="container animate-fade-up">
-    <h2 class="text-center mb-4">Skills</h2>
+<!-- ✅ Certificates -->
+<section id="certificates" class="container">
+    <h2>Certificates</h2>
     <div class="card-custom">
         <ul>
-            <li><strong>Front-End:</strong> HTML, CSS, JavaScript</li>
-            <li><strong>Back-End:</strong> Python, Node.js, Flask</li>
-            <li><strong>Database:</strong> Firebase, MySQL</li>
-            <li><strong>Mobile:</strong> Android Studio (Java/XML)</li>
-            <li><strong>IoT:</strong> ESP32, Arduino, Sensors, RFID</li>
-            <li><strong>Tools:</strong> AI Tools, GitHub, VS Code</li>
+            <li>IoT Project Development - Grandiose Academy</li>
+            <li>Python Full Stack - Online Certification</li>
+            <li>Firebase Integration Workshop</li>
+            <li>AI Tools & Cloud Automation - Webinar</li>
+            <li>Web Development Bootcamp</li>
         </ul>
     </div>
 </section>
 
-<!-- Projects -->
-<section id="projects" class="container animate-fade-up">
-    <h2 class="text-center mb-4">Projects</h2>
-    <div class="card-custom">
-        <h4>RFID Door Lock IoT</h4>
-        <p>IoT-based RFID door lock with WhatsApp alerts and database logging.</p>
-    </div>
-    <div class="card-custom">
-        <h4>Student Management System</h4>
-        <p>Flask + SQL-based student management with academics, attendance, and results tracking.</p>
-    </div>
-    <div class="card-custom">
-        <h4>AI Food Calorie Detection</h4>
-        <p>AI-powered food image recognition to estimate calories using TensorFlow models.</p>
-    </div>
-    <div class="card-custom">
-        <h4>Plant Monitoring IoT</h4>
-        <p>ESP32-based soil moisture monitoring with motor automation.</p>
+<!-- ✅ Contact -->
+<section id="contact" class="container">
+    <h2>Contact</h2>
+    <div class="card-custom text-center">
+        <h3 style="color:#0ea5e9;">Vignesh Aniruth</h3>
+        <div class="d-flex justify-content-center gap-4 mt-4">
+            <a href="#" target="_blank" class="icon-btn github"><i class="fa-brands fa-github"></i></a>
+            <a href="#" target="_blank" class="icon-btn linkedin"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" target="_blank" class="icon-btn instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/919876543210" target="_blank" class="icon-btn whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:vignesh@example.com" class="icon-btn email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
     </div>
 </section>
 
-<!-- Certificates -->
-<section id="certificates" class="container animate-fade-up">
-    <h2 class="text-center mb-4">Certificates</h2>
-    <div class="card-custom">
-        <ul>
-           <li>IoT-Based Projects Certificate</li>
-           
-            >
-        </ul>
-    </div>
-</section>
-
-<!-- Personal -->
-<section id="personal" class="container animate-fade-up">
-    <h2 class="text-center mb-4">Personal Details</h2>
-    <div class="card-custom">
-        <p><strong>Name:</strong> Vignesh Aniruth</p>
-        <p><strong>Date of Birth:</strong> 27-09-2002</p>
-        <p><strong>Gender:</strong> Male</p>
-        <p><strong>Marital Status:</strong> Single</p>
-        <p><strong>Nationality:</strong> Indian</p>
-        <p><strong>Location:</strong> Tamil Nadu, India</p>
-        <p><strong>Email:</strong> vignesh@example.com</p>
-        <p><strong>Mobile:</strong> +91-9876543210</p>
-        <p><strong>Languages Known:</strong> Tamil (Speak & Write), English (Speak & Write), Telugu (Speak)</p>
-    </div>
-</section>
-
-<!-- Social -->
-<section id="social" class="container animate-fade-up">
-    <h2 class="text-center mb-4">Social Media</h2>
-    <div class="d-flex justify-content-center gap-4">
-        <a href="#" class="btn btn-outline-blue">GitHub</a>
-        <a href="#" class="btn btn-outline-blue">LinkedIn</a>
-        <a href="#" class="btn btn-outline-blue">Instagram</a>
-        <a href="https://wa.me/919876543210" target="_blank" class="btn btn-outline-blue">WhatsApp</a>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-dark-blue text-center py-3">
+<!-- ✅ Footer -->
+<footer class="bg-dark text-center py-3">
     © 2025 Vignesh Portfolio. All rights reserved.
 </footer>
 
+<!-- ✅ Bottom Navigation -->
+<nav class="navbar navbar-bottom">
+    <ul class="navbar-nav flex-row mx-auto">
+        <li class="nav-item"><a class="nav-link" href="#home"><i class="fa-solid fa-house"></i><small>Home</small></a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience"><i class="fa-solid fa-briefcase"></i><small>Exp</small></a></li>
+        <li class="nav-item"><a class="nav-link" href="#education"><i class="fa-solid fa-graduation-cap"></i><small>Edu</small></a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills"><i class="fa-solid fa-code"></i><small>Skills</small></a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects"><i class="fa-solid fa-diagram-project"></i><small>Projects</small></a></li>
+        <li class="nav-item"><a class="nav-link" href="#certificates"><i class="fa-solid fa-certificate"></i><small>Certify</small></a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact"><i class="fa-solid fa-address-book"></i><small>Contact</small></a></li>
+    </ul>
+</nav>
+
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
