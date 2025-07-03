@@ -381,16 +381,7 @@
 </section>
 
 
-  <!-- BSc -->
-  <div class="card-custom d-flex justify-content-between align-items-start flex-wrap"style="animation-delay: 0.2s;">
-    <div>
-      <h5 class="mb-1 text-info">BSc Information Technology</h5>
-      <p class="mb-1 small text-white">Arulmigu Kalasalingam College of Arts and Science</p>
-      <p class="mb-0 small text-white">Krishnankoil, Virudhunagar</p>
-    </div>
-    <span class="badge bg-primary rounded-pill align-self-start">2020 - 2023</span>
-  </div>
-</section>
+  
 
 
 <!-- ✅ Skills -->
@@ -452,88 +443,39 @@
 <section id="projects" class="container">
     <h2><i class="fa-solid fa-diagram-project me-2"></i>Projects</h2>
     <div class="row g-4">
+        {% for project in projects %}
         <div class="col-md-6">
             <div class="project-card">
-                <img src="static/images/project1.png" alt="">
-                <h5 class="mt-3">RFID Door Lock IoT</h5>
-                <p>RFID-based door lock system with WhatsApp alerts and data logging.</p>
-                <a href="#" class="btn btn-outline btn-sm">GitHub</a>
-                <a href="#" class="btn btn-blue btn-sm">Live View</a>
+                <h5 class="mt-3">{{ project.name }}</h5>
+                <p>{{ project.description }}</p>
+                <a href="{{ project.html_url }}" class="btn btn-outline btn-sm" target="_blank">GitHub</a>
+                {% if project.homepage %}
+                <a href="{{ project.homepage }}" class="btn btn-blue btn-sm" target="_blank">Live View</a>
+                {% endif %}
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="project-card">
-                <img src="static/images/project2.png" alt="">
-                <h5 class="mt-3">Student Management System</h5>
-                <p>Flask + SQL-based student academic & attendance management app.</p>
-                <a href="#" class="btn btn-outline btn-sm">GitHub</a>
-                <a href="#" class="btn btn-blue btn-sm">Live View</a>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="project-card">
-                <img src="static/images/project3.png" alt="">
-                <h5 class="mt-3">AI Food Calorie Detection</h5>
-                <p>AI model to predict calories from food images using TensorFlow.</p>
-                <a href="#" class="btn btn-outline btn-sm">GitHub</a>
-                <a href="#" class="btn btn-blue btn-sm">Live View</a>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="project-card">
-                <img src="static/images/project4.png" alt="">
-                <h5 class="mt-3">Plant Monitoring IoT</h5>
-                <p>ESP32-based system to monitor soil moisture and automate watering.</p>
-                <a href="#" class="btn btn-outline btn-sm">GitHub</a>
-                <a href="#" class="btn btn-blue btn-sm">Live View</a>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </section>
 
-<!-- ✅ Certificates -->
+
 <section id="certificates" class="container">
   <h2 class="mb-4"><i class="fa-solid fa-certificate me-2"></i>Certificates</h2>
   <div class="overflow-hidden" style="position: relative;">
     <div class="d-flex" style="scroll-snap-type: x mandatory; overflow-x: scroll; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch;">
+      
+      {% for cert in certificates %}
       <div class="card flex-shrink-0 mx-1" style="width: 100%; scroll-snap-align: start; background: rgba(17,24,39,0.95); border: 2px solid #0ea5e9;">
-        <img src="static/images/cert1.png" class="card-img-top" alt="Certificate 1">
+        <img src="{{ url_for('static', filename='certificates/' ~ cert) }}" class="card-img-top" alt="Certificate">
         <div class="card-body text-center">
-          <h6 class="card-title text-info mb-2">IoT Project Development</h6>
-          <p class="card-text small mb-0">Grandiose Academy - IoT Project Development Training</p>
         </div>
       </div>
-      <div class="card flex-shrink-0 mx-1" style="width: 100%; scroll-snap-align: start; background: rgba(17,24,39,0.95); border: 2px solid #0ea5e9;">
-        <img src="static/images/cert2.png" class="card-img-top" alt="Certificate 2">
-        <div class="card-body text-center">
-          <h6 class="card-title text-info mb-2">Python Full Stack</h6>
-          <p class="card-text small mb-0">Online Full Stack Certification</p>
-        </div>
-      </div>
-      <div class="card flex-shrink-0 mx-1" style="width: 100%; scroll-snap-align: start; background: rgba(17,24,39,0.95); border: 2px solid #0ea5e9;">
-        <img src="static/images/cert3.png" class="card-img-top" alt="Certificate 3">
-        <div class="card-body text-center">
-          <h6 class="card-title text-info mb-2">Firebase Workshop</h6>
-          <p class="card-text small mb-0">Firebase Backend Integration Workshop</p>
-        </div>
-      </div>
-      <div class="card flex-shrink-0 mx-1" style="width: 100%; scroll-snap-align: start; background: rgba(17,24,39,0.95); border: 2px solid #0ea5e9;">
-        <img src="static/images/cert4.png" class="card-img-top" alt="Certificate 4">
-        <div class="card-body text-center">
-          <h6 class="card-title text-info mb-2">AI Tools & Cloud</h6>
-          <p class="card-text small mb-0">AI & Cloud Automation Webinar</p>
-        </div>
-      </div>
-      <div class="card flex-shrink-0 mx-1" style="width: 100%; scroll-snap-align: start; background: rgba(17,24,39,0.95); border: 2px solid #0ea5e9;">
-        <img src="static/images/cert5.png" class="card-img-top" alt="Certificate 5">
-        <div class="card-body text-center">
-          <h6 class="card-title text-info mb-2">Web Development Bootcamp</h6>
-          <p class="card-text small mb-0">Full Stack Development Course</p>
-        </div>
-      </div>
+      {% endfor %}
+
     </div>
   </div>
 </section>
+
 
 <!-- ✅ Hide Scrollbar -->
 <style>
